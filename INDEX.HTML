@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Special</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('love.png') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .gif-container {
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #d63384;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .yes-button {
+            background-color: green;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transform: scale(1.3);
+        }
+        .no-button {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .yes-button:hover {
+            background-color: darkgreen;
+        }
+        .no-button:hover {
+            background-color: darkred;
+        }
+        .address-form {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .address-form label, .address-form input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .submit-button {
+            background-color: #d63384;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <div class="gif-container">
+            <img src="bear with panda.gif" alt="Cute Bear and Panda" width="250">
+        </div>
+        <h1>Will You Be My Valentine? <span class="heart">❤</span></h1>
+        <div class="button-container">
+            <button class="yes-button" onclick="yesResponse()">Yes</button>
+            <button class="no-button" id="noButton" onclick="noResponse()">No</button>
+        </div>
+        <div class="address-form" id="addressForm">
+            <h2>CONGRATULATIONS! YOU'RE NOW OFFICIALLY CHIDERA'S VALENTINE!!!!</h2>
+            <p>Kindly input your address here to receive your gift:</p>
+            <form onsubmit="submitForm(event)">
+                <label for="address">Your Address:</label>
+                <input type="text" id="address" name="address" required>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+
+        function yesResponse() {
+            document.getElementById("addressForm").style.display = "block";
+        }
+
+        function noResponse() {
+            let noButton = document.getElementById("noButton");
+
+            if (noClickCount === 0) {
+                noButton.textContent = "Are you sure?";
+            } else if (noClickCount === 1) {
+                noButton.textContent = "Really sure?";
+            } else if (noClickCount === 2) {
+                noButton.textContent = "Last chance!";
+            } else {
+                noButton.textContent = "No, you're mine 😊";
+                noButton.style.backgroundColor = "green";
+            }
+
+            noClickCount++;
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            document.getElementById("mainContainer").innerHTML = "<h1>Thank You!</h1><p>You will hear soon from Chidera! ❤️</p>";
+        }
+    </script>
+</body>
+</html>
